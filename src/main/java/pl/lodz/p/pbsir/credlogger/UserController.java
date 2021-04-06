@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "https://auth-sso.github.io/", maxAge = 3600)
 @RequestMapping("/api")
 public class UserController {
 

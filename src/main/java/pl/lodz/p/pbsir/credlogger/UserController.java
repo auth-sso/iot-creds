@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,8 @@ public class UserController {
 
     @RequestMapping(value = "/add",  method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String addUser(@RequestBody User user) {
+    public String addUser(@RequestBody User user, HttpServletRequest request) {
+        user.setIp(request.getRemoteAddr());
         userRepository.addUser(user);
         return "";
     }
@@ -33,3 +35,4 @@ public class UserController {
 
 
 }
+
